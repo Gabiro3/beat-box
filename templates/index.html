@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="An unparalleled experience of sound magic, Audiospark">
+        <meta name="keywords" content="Audiospark">
+        <meta name="theme-color" content="#0000FF">
+
+        <!-- IMPORT CSS MAIN -->
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <!-- IMPORT FONT AWESOME -->
+        <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/fontawesome.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/all.min.css' %}">
+        <!-- IMPORT FAVICON -->
+        <link rel="shortcut icon" href="{% static 'images/logo/SVG/Audiospark_Logo_Icon.svg' %}" type="image/x-icon">
+        
+        <!-- TITLE -->
+        <title>BeatBox | Music Redefined</title>
+    </head>
+    <body id="Top">
+
+        <!-- LOADER -->
+        <div class="loader-warpper" id="loader">
+            <div class="loader"></div>
+        </div>
+
+
+        <!-- NAVBAR -->
+        <nav id="navbarFixed">
+            <ul>
+                <a href="javascript:void(0)" onclick="navbarMobileToggle()" title="Menu" aria-label="Menu" class="fa-bars-mobile"><span class="far fa-bars"></span></a>
+                <a href="index.html"><img src="{% static 'images/logo/SVG/Audiospark_Logo_Icon.svg' %}" alt="" title="Audiospark"></a>
+                <ul id="navbarMobileToggle">
+                    <a href="javascript:void(0)" onclick="navbarMobileToggle()" title="Close Menu" aria-label="Close Menu" class="fa-close-mobile"><span class="far fa-close"></span></a>
+                    
+                    <a href="#explore"><li>Explore</li></a>
+                    <a href="#featured_creators"><li>Creators</li></a>
+                    <a href="#trending"><li>Trending</li></a>
+                    <a href="#category"><li>Category</li></a>
+                    <a href="#popular_artists"><li>Popular Artists</li></a>
+                </ul>
+            </ul>
+            <ul>
+                <a href="javascript:void(0)" onclick="switchMode()" id="switchModeBtnDark" title="Switch Dark Mode" aria-label="Switch Dark Mode"><span class="far fa-moon"></span></a>
+                <a href="javascript:void(0)" onclick="switchMode()" id="switchModeBtnLight" title="Switch Light Mode" aria-label="Switch Light Mode"><span class="far fa-sun"></span></a>
+                <a href="javascript:void(0)" onclick="searchMode()" title="Search" aria-label="Search"><span class="far fa-search"></span></a>
+                <a href="javascript:void(0)" onclick="avatarDropdown()"><img src="images/avatar/avatar-1.png" alt=""></a>
+
+                <!-- AVATAR DORPDOWN -->
+                <div class="avatar-dropdown" id="avatarDropdown">
+                    <a href=""><li><span class="far fa-user"></span> Profile</li></a>
+                    <a href=""><li><span class="far fa-cog"></span> Settings</li></a>
+                    <a href="javascript:void(0)" onclick="supportChatMode()"><li><span class="far fa-comment"></span> Support</li></a>
+                    <a href=""><li><span class="far fa-star"></span> Upgrade Plan</li></a>
+
+                    <hr>
+
+                    <a href=""><li><span class="far fa-history"></span> Recent</li></a>
+                    <a href=""><li><span class="far fa-play-circle"></span> Playlist</li></a>
+                    <a href=""><li><span class="far fa-heart"></span> likes</li></a>
+                    <a href=""><li><span class="far fa-download"></span> Downloads</li></a>
+                </div>
+            </ul>
+        </nav>
+
+        <!-- SEARCH MODE -->
+        {% block content %}
+
+
+    {% endblock %}
+
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-grid">
+                <ul>
+                    <div>
+                        <img src="images/logo/SVG/Audiospark_Logo_Icon.svg" alt="" width="30px" id="logoFooterModeLight">
+                        <img src="images/logo/SVG/Audiospark_Logo_Icon_White.svg" alt="" width="30px" id="logoFooterModeDark">
+                        <p>An unparalleled experience of sound magic, BeatBox</p>
+
+                        <!-- SOCIAL MEDIA -->
+                        <ul class="footer-social-media">
+                            <a href="https://github.com/Mhadi-1382/" title="Github"><span class="fab fa-github"></span></a>
+                            <a href="https://dribbble.com/Mahdi_Rabiee/" title="Dribbble"><span class="fab fa-dribbble"></span></a>
+                            <a href="https://www.pinterest.com/MahdiRabiee82/" title="Pinterest"><span class="fab fa-pinterest"></span></a>
+                        </ul>
+
+                        <!-- FOOTER ICON -->
+                        <ul class="footer-icon">
+                            <a href=""><img src="images/elements/apple_download.svg" alt="" width="100"></a>
+                            <a href=""><img src="images/elements/google_download.svg" alt="" width="100"></a>
+                        </ul>
+                    </div>
+                </ul>
+                <ul>
+                    <h4>BeatBox</h4>
+                    <li><a href="index.html#explore">Explore</a></li>
+                    <li><a href="index.html#featured_creators">Featured Creators</a></li>
+                    <li><a href="index.html#trending">Trending</a></li>
+                    <li><a href="index.html#category">Category</a></li>
+                    <li><a href="index.html#popular_artists">Popular Artists</a></li>
+                </ul>
+                <ul>
+                    <h4>Company</h4>
+                    <li><a href="">About</a></li>
+                    <li><a href="javascript:supportChatMode()">Support</a></li>
+                    <li><a href="">API</a></li>
+                    <li><a href="">Terms of Service</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="">Cookie Policy</a></li>
+                </ul>
+                <ul>
+                    <h4>Community</h4>
+                    <li><a href="">Blog</a></li>
+                    <li><a href="">Forum</a></li>
+                </ul>
+            </div>
+
+            <!-- FOOTER COPYRIGHT -->
+            <div class="footer-copyright">
+                <p>© 2024 BeatBox. All rights reserved.</p>
+            </div>
+        </footer>
+
+
+        <!-- BACK TOP -->
+        <a href="#Top">
+            <div class="back-top" id="backTop">
+                <span class="far fa-angle-up"></span>
+            </div>
+        </a>
+
+
+
+        <!-- IMPORT JS -->
+        <script src="{% static 'js/app.js' %}"></script>
+    
+    </body>
+</html>
