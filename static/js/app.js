@@ -64,27 +64,53 @@ window.addEventListener("scroll", () => {
 
 // ## LIKE MUSIC HEADER
 function likeMusicHeader() {
-    document.getElementById("likeMusicHeader").classList.toggle("likeMusicHeaderToggle");
+    document.getElementById("likeSong").classList.toggle("downloadToggle");
 }
 function likeMusicPlay() {
     document.getElementById("likeMusicPlay").classList.toggle("likeMusicPlayToggle");
 }
 
-
 // ## PLAY SOUND/MUSIC PLAYER
-var audio1 = new Audio("musics/1.mp3");
-// PLAY SOUND
-function playSound() {
-    audio1.play();
-    document.getElementById("pauseBtnPlayCard").classList.toggle("pauseBtnPlayCardToggle");
-    document.getElementById("playBtnPlayCard").classList.toggle("playBtnPlayCardToggle");
+// Create a global Audio object
+var audio1 = new Audio("/static/images/1.mp3");
+
+// Play sound function
+// Function to play sound
+function playSound(cardId) {
+    const audio = document.getElementById(`audio-${cardId}`);
+    audio.play().then(() => {
+        // Show pause button and hide play button
+        document.getElementById(`playBtnPlayCard-${cardId}`).style.display = "none";
+        document.getElementById(`pauseBtnPlayCard-${cardId}`).style.display = "inline";
+    }).catch(error => {
+        console.error('Error playing the audio file:', error);
+    });
 }
-// PAUSE SOUND
-function pauseSound() {
-    audio1.pause();
-    document.getElementById("pauseBtnPlayCard").classList.toggle("pauseBtnPlayCardToggle");
-    document.getElementById("playBtnPlayCard").classList.toggle("playBtnPlayCardToggle");
+
+// Function to pause sound
+function pauseSound(cardId) {
+    const audio = document.getElementById(`audio-${cardId}`);
+    audio.pause();
+    // Show play button and hide pause button
+    document.getElementById(`playBtnPlayCard-${cardId}`).style.display = "inline";
+    document.getElementById(`pauseBtnPlayCard-${cardId}`).style.display = "none";
 }
+
+// Toggle visibility of play/pause buttons
+function togglePlayPauseButtons() {
+    const playButton = document.getElementById("playBtnPlayCard");
+    const pauseButton = document.getElementById("pauseBtnPlayCard");
+    if (audio1.paused) {
+        playButton.style.display = "inline";
+        pauseButton.style.display = "none";
+    } else {
+        playButton.style.display = "none";
+        pauseButton.style.display = "inline";
+    }
+}
+
+// Event listener to ensure the correct button is displayed when audio ends
+audio1.addEventListener('ended', togglePlayPauseButtons);
 function likeMusicPlayer() {
     document.getElementById("likeMusicPlayer").classList.toggle("likeMusicPlayerToggle");
 }
@@ -95,7 +121,9 @@ function collapseMusicPlayer() {
     document.getElementById("collapseMusicPlayerBtn").classList.toggle("collapseMusicPlayerBtnToggle");
     document.getElementById("expandMusicPlayerBtn").classList.toggle("expandMusicPlayerBtnToggle");
 }
-
+function closeSection() {
+    document.getElementById("download").classList.toggle("downloadToggle");
+}
 // FULL PLAYER
 function fullPlayer() {
     document.getElementById("fullPlayer").classList.toggle("fullPlayer");
@@ -105,13 +133,19 @@ function fullPlayerHeaderDropdown() {
 }
 
 // ## DOWNLOAD
-function download() {
+function download(beatName) {
     document.getElementById("download").classList.toggle("downloadToggle");
 
     setTimeout(() => {
-        window.location.href = "../musics/1.mp3";
+        const link = document.createElement('a');
+        link.href = `/static/images/${beatName}`;
+        link.download = beatName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }, 3000);
 }
+
 
 // NUMBER ALBUMS
 var cardGridLen = document.getElementById("cardGridLen").childElementCount;

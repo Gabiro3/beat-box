@@ -34,12 +34,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 # Music model
 class Music(models.Model):
     title = models.CharField(max_length=120, null=True)
-    music_type = models.CharField(max_length=100, default='General')
-    creator = models.CharField(max_length=120, default='BeatBox')
+    music_type = models.CharField(max_length=100, null=True)
+    creator = models.CharField(max_length=120, null=True)
     
     # New fields
-    cover = models.ImageField(upload_to='covers/', null=True, blank=True)
-    content = models.FileField(upload_to='musics/', null=True, blank=True)
+    cover = models.ImageField(null=True)
     downloadable = models.BooleanField(default=True)
     votes = models.IntegerField(default=0)
 
@@ -50,7 +49,22 @@ class Music(models.Model):
 class Artist(models.Model):
     name = models.CharField(max_length=120, null=True)
     music =  models.ManyToManyField(Music, blank=True)
+    genre = models.CharField(max_length=100, null=True)
+    cover = models.ImageField(null=True)
+    created_by = models.CharField(max_length=120, null=True)
+    uploaded = models.DateTimeField(auto_now=True, null=True)
+
+    class Meta:
+        ordering = ['-uploaded']
 
 class Sample(models.Model):
+    title = models.CharField(max_length=100, null=True)
+    album = models.CharField(max_length=120, null=True)
     music_type = models.CharField(max_length=100, null=True)
-    sample = models.FileField(null=True, blank=True)
+    creator = models.CharField(max_length=100, null=True)
+    sample = models.FileField(upload_to='samples', null=True)
+    duration = models.FloatField(null=True)
+
+class Melody(models.Model):
+    genre = models.CharField(max_length=100, null=True)
+    content = models.FileField(upload_to='melodies', null=True)

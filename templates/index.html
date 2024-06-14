@@ -48,23 +48,27 @@
                 <a href="javascript:void(0)" onclick="switchMode()" id="switchModeBtnDark" title="Switch Dark Mode" aria-label="Switch Dark Mode"><span class="far fa-moon"></span></a>
                 <a href="javascript:void(0)" onclick="switchMode()" id="switchModeBtnLight" title="Switch Light Mode" aria-label="Switch Light Mode"><span class="far fa-sun"></span></a>
                 <a href="javascript:void(0)" onclick="searchMode()" title="Search" aria-label="Search"><span class="far fa-search"></span></a>
-                <a href="javascript:void(0)" onclick="avatarDropdown()"><img src="images/avatar/avatar-1.png" alt=""></a>
-
-                <!-- AVATAR DORPDOWN -->
+                {% if request.user.is_authenticated %}
+                <a href="javascript:void(0)" onclick="avatarDropdown()"><img src="{% static 'images/avatar/avatar-1.png' %}" alt=""></a>
                 <div class="avatar-dropdown" id="avatarDropdown">
-                    <a href=""><li><span class="far fa-user"></span> Profile</li></a>
+                    <a href=""><li><span class="far fa-user"></span> {{request.user.name}}</li></a>
                     <a href=""><li><span class="far fa-cog"></span> Settings</li></a>
-                    <a href="javascript:void(0)" onclick="supportChatMode()"><li><span class="far fa-comment"></span> Support</li></a>
-                    <a href=""><li><span class="far fa-star"></span> Upgrade Plan</li></a>
+                    <a href="{% url 'add-music' %}" onclick="supportChatMode()"><li><span class="far fa-music"></span> Add Beats</li></a>
+                    <a href="{% url 'add-artist'%}"><li><span class="far fa-microphone"></span> Add Creators</li></a>
 
                     <hr>
 
-                    <a href=""><li><span class="far fa-history"></span> Recent</li></a>
-                    <a href=""><li><span class="far fa-play-circle"></span> Playlist</li></a>
+                    <a href="{% url 'add-sample' %}"><li><span class="far fa-headphones"></span> Add Samples</li></a>
+                    <a href="{% url 'add-melody' %}"><li><span class="far fa-guitar"></span> Add Melodies</li></a>
                     <a href=""><li><span class="far fa-heart"></span> likes</li></a>
                     <a href=""><li><span class="far fa-download"></span> Downloads</li></a>
                 </div>
+                {% else %}
+                <a href="{% url 'login' %}"><li><span class="far fa-lock"></span>Login</li></a>
+
+                <!-- AVATAR DORPDOWN -->
             </ul>
+            {% endif %}
         </nav>
 
         <!-- SEARCH MODE -->

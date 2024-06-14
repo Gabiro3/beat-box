@@ -1,0 +1,207 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <body id="Top" class="page-01">
+
+
+        <!-- SEARCH MODE -->
+        <div class="overlay-search-mode" id="overlaySearchMode">
+            <div class="search-mode" id="searchMode">
+                <a href="javascript:void(0)" onclick="searchMode()"></a>
+                <!-- FORM: SEARCH -->
+                <form action="" method="post">
+                    <span class="far fa-search"></span>
+                    <input type="search" placeholder="Search" aria-placeholder="Search">
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- HEADER/HERO -->
+        <header class="hero hero-page">
+            <div>
+                <figure>
+                    <a href="{{music.cover.url}}"><img src="{{music.cover.url}}" alt=""></a>
+                </figure>
+                <div>
+                    <h1>{{music.title}}</h1>
+                    <a href="user.html">{{music.creator}}</a>
+
+                    <div>
+                        <a href="javascript:void(0)" onclick="likeMusicHeader()" title="Like" aria-label="Like"><button type="button" class="btn-post-default">{{music.votes}} <span class="far fa-heart" id="likeMusicHeader"></span></button></a>
+                        <a href="javascript:download()" title="Download" aria-label="Download"><button type="button" class="btn-post-default"><span class="far fa-download"></span></button></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- MAIN -->
+        <main class="main-page-01">
+            <!-- #SECTION: PLAYLIST POST -->
+            <section class="section-playlist-post">
+                <div class="section-playlist-post-header">
+                    <h2>Playlist</h2>
+                    <p>{{music.title}} • 2021 • 10 Songs</p>
+                </div>
+                <div class="section-playlist-post-body">
+                    {% for sample in samples %}
+                    <div class="section-playlist-post-play-card">
+                        <div>
+                            <span class="far fa-play" id="playBtnPlayCard-1" onclick="playSound('1')" title="Play" aria-label="Play"></span>
+                            <span class="far fa-pause" id="pauseBtnPlayCard-1" onclick="pauseSound('1')" title="Pause" aria-label="Pause"></span>
+                            <h4>{{sample.title}}</h4>
+                            <audio id="audio-1" src="/static/images/1.mp3"></audio>
+                        </div>
+                        <div>
+                            <div>
+                                <span class="far fa-download" onclick="download()" title="Download" aria-label="Download"></span>
+                                <span class="far fa-heart" id="likeMusicPlay" onclick="likeMusicPlay()" title="Like" aria-label="Like"></span>
+                            </div>
+                            <p>1:39</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+        
+                </div>
+                <div class="section-playlist-post-footer">
+                    <p>&copy; BeatBox Studio Inc.</p>
+                </div>
+            </section>
+
+            <!-- #SECTION: RELATED MUSIC -->
+            <section class="section-trending">
+                <div>
+                    <h2>Related Albums</h2>
+                    <p><a href="">See all</a></p>
+                </div>
+
+                <!-- RELATED MUSIC SLIDER -->
+                <div class="card-grid-slider">
+                    <div class="card-grid-slider">
+                
+                        {% for beat in beats %}
+                        <div class="card-simple">
+                            <a href="{% url 'music-view' beat.id %}">
+                                <figure>
+                                    <img src="{{beat.cover.url}}" alt="">
+                                </figure>
+                                <h3>{{beat.title}}</h3>
+                            </a>
+                            <p><a href="user.html">{{beat.creator}}</a></p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+            <!-- #SECTION: MUSIC PLAYER -->
+            <section class="section-music-player" id="sectionMusicPlayer">
+                <div>
+                    <span class="far fa-angle-down" id="collapseMusicPlayerBtn" onclick="collapseMusicPlayer()"></span>
+                    <span class="far fa-angle-up" id="expandMusicPlayerBtn" onclick="collapseMusicPlayer()"></span>
+                    <img src="{% static 'images/covers/Speed-Runner-Ultima-Trailer-Music-400x400.jpeg' %}" alt="">
+                    <div>
+                        <h4>Helix Angle</h4>
+                        <a href="">Ultima Trailer Music</a>
+                    </div>
+                </div>
+                <div class="section-music-player-timeline">
+                    <div class="section-music-player-timeline-linepoint"></div>
+                </div>
+                <div>
+                    <a href="javascript:void(0)" onclick="likeMusicPlayer()" title="Like" aria-label="Like"><span class="far fa-heart" id="likeMusicPlayer"></span></a>
+                    <a href="javascript:void(0)" onclick="playSound()" title="Play" aria-label="Play"><span class="far fa-play"></span></a>
+                    <a href="javascript:void(0)" onclick="fullPlayer()" title="Show Full Player" aria-label="Show Full Player"><span class="far fa-expand"></span></a>
+                </div>
+            </section>
+
+            <!-- #SECTION: FULL PLAYER -->
+            <section class="section-full-player" id="fullPlayer">
+                <div class="section-full-player-header">
+                    <span class="far fa-angle-left" title="Back" aria-label="Back" onclick="fullPlayer()"></span>
+                    <h4>Now Playing</h4>
+                    <span class="far fa-ellipsis-h" title="More Option" aria-label="More Option" onclick="fullPlayerHeaderDropdown()"></span>
+
+                    <!-- FULL PLAYER HEADER DROPDOWN -->
+                    <div class="section-full-player-header-dropdown" id="fullPlayerHeaderDropdown">
+                        <a href=""><span class="far fa-play-circle"></span> Add To Playlist</a>
+                        <a href=""><span class="far fa-info-circle"></span> Help</a>
+                    </div>
+                </div>
+                <div class="section-full-player-body">
+                    <figure>
+                        <img src="{{music.cover.url}}" alt="">
+                    </figure>
+                    <div>
+                        <div>
+                            <span class="far fa-heart" title="Like" aria-label="Like"></span>
+                        </div>
+                        <div>
+                            <h3>Helix Angle</h3>
+                            <a href="user.html">{{music.creator}}</a>
+                        </div>
+                        <div>
+                            <span class="far fa-ellipsis-h" title="More Option" aria-label="More Option"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-full-player-footer">
+                    <span class="far fa-random" title="Shuffle" aria-label="Shuffle"></span>
+                    <span class="far fa-step-backward" title="Backward" aria-label="Backward"></span>
+                    <span class="far fa-play" id="playBtnPlayCard" onclick="playSound()" title="Play" aria-label="Play"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard" onclick="pauseSound()" title="Pause" aria-label="Pause"></span>
+                    <span class="far fa-step-forward" title="Forward" aria-label="Forward"></span>
+                    <span class="far fa-refresh" title="Repeat" aria-label="Repeat"></span>
+                </div>
+            </section>
+
+            <!-- #SECTION: DOWNLOAD -->
+            <div class="overlay-section-download" id="download">
+                <section class="section-download">
+                    <div class="section-download-header">
+                        <h4></h4>
+                        <span class="far fa-close" onclick="download('{{music.content}}')" title="Close" aria-label="Close"></span>
+                    </div>
+                    <div class="section-download-body">
+                        <a href="user.html"><img src="{% static 'images/avatar-artists/Hans-Zimmer-400x400.jpg' %}" alt=""></a>
+                        <h3>Say thanks to {{music.creator}}</h3>
+                        <p>By downloading, you agree to our <a href="">License</a><p>
+                        <a href="user.html" class="btn-secondary">Profile</a>
+                    </div>
+                </section>
+            </div>
+            <div class="overlay-section-download" id="likeSong">
+                <section class="section-download">
+                    <div class="section-download-header">
+                        <h4></h4>
+                        <span class="far fa-close" onclick="closeSection()" title="Close" aria-label="Close"></span>
+                    </div>
+                    <div class="section-download-body" id="likeSection">
+                        <a href="user.html"><img src="{% static 'images/avatar-artists/Hans-Zimmer-400x400.jpg' %}" alt=""></a>
+                        <h3>Create an account to like this Beat</h3>
+                        <p>By creating an account, you agree to our <a href="">License</a><p>
+                        <a href="" class="btn-secondary">Join the Waitlist</a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    
+    </body>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('likeSong');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+</html>
+
+{% endblock content %}
+        <!-- FOOTER -->
+        

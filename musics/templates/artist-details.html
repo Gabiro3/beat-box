@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<header class="hero hero-page">
+    <div>
+        <figure>
+            <a href="{{artist.cover.url}}"><img src="{{artist.cover.url}}" alt=""></a>
+        </figure>
+        <div>
+            <h1>{{artist.name}}</h1>
+
+            <div>
+                <a href="javascript:download()" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" title="Follwing" aria-label="Follwing"><button type="button" class="btn-post-default">{{artist.genre}}</button></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- MAIN -->
+<main class="user-page">
+    <!-- #SECTION: ALBUMS -->
+    <section class="section-playlist-post">
+        <div class="section-playlist-post-header">
+            <h2>Albums</h2>
+            <p>{{artist.name}} • 2024 • <span id="numAlbums"></span> Songs</p>
+        </div>
+        <div class="section-playlist-post-body">
+            <div class="card-grid" id="cardGridLen">
+                {% for sample in other_beats%}
+                <div class="card-simple">
+                    <a href="">
+                        <figure>
+                            <img src="{static 'images/covers/Acceleration-Amadea-Music-Productions-400x400.jpeg' %}" alt="">
+                        </figure>
+                        <h3>Acceleration</h3>
+                    </a>
+                    <p><a href="user.html">Amadea Music Productions</a></p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}

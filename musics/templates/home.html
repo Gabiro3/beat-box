@@ -46,69 +46,21 @@
         <!-- EXPLORE SLIDER -->
         <div class="card-grid-slider">
             <div class="card-grid-slider">
+        
+                {% for beat in beats %}
                 <div class="card-simple">
-                    <a href="post.html">
+                    <a href="{% url 'music-view' beat.id %}">
                         <figure>
-                            <img src="{% static 'images/covers/Acceleration-Amadea-Music-Productions-400x400.jpeg' %}" alt="">
+                            <img src="{{beat.cover.url}}" alt="">
                         </figure>
-                        <h3>Acceleration</h3>
+                        <h3>{{beat.title}}</h3>
                     </a>
-                    <p><a href="user.html">Amadea Music Productions</a></p>
+                    <p><a href="{% url 'artist-view' beat.creator %}">{{beat.creator}}</a></p>
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'delete-music' beat.id %}" style="color:red;"><li><span class="far fa-trash"></span></li></a>
+                    {% endif %}
                 </div>
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Charged-400x400.jpg' %}" alt="">
-                        </figure>
-                        <h3>Charged</h3>
-                    </a>
-                    <p><a href="user.html">Charged</a></p>
-                </div>
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Deflector-3-Complexities-of-Sound-400x400.jpeg' %}" alt="">
-                        </figure>
-                        <h3>Deflector 3</h3>
-                    </a>
-                    <p><a href="user.html">Complexities of Sound</a></p>
-                </div>
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Divergent-Hybrid-Orchestra-Political-Drama-Themes-Lucas-Napoleone-Philippe-Briand-Salvador-Casais-400x400.jpeg' %}" alt="">
-                        </figure>
-                        <h3>Divergent</h3>
-                    </a>
-                    <p><a href="user.html">Hybrid Orchestra</a></p>
-                </div>
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Driver-Vol.-2-Imagine-Music-400x400.jpg' %}" alt="">
-                        </figure>
-                        <h3>Driver Vol. 2</h3>
-                    </a>
-                    <p><a href="user.html">Imagine Music</a></p>
-                </div>
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Drowning-Abyss-2-Colossal-Trailer-Music-400x400.jpeg' %}" alt="">
-                        </figure>
-                        <h3>Drowning Abyss 2</h3>
-                    </a>
-                    <p><a href="user.html">Colossal Trailer Music</a></p>
-                </div>
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="images/covers/Future-Technology-Background-Music-Lab-400x400.jpeg" alt="">
-                        </figure>
-                        <h3>Future Technology Background</h3>
-                    </a>
-                    <p><a href="user.html">Music Lab</a></p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -122,72 +74,19 @@
 
         <!-- FEATURED CREATORS SLIDER -->
         <div class="card-grid-slider">
+            {% for artist in artists %}
             <div class="card-group-grid">
                 <div class="card-simple">
-                    <a href="post.html">
+                    <a href="{% url 'artist-view' artist.name %}">
                         <figure>
-                            <img src="{% static 'images/covers/Acceleration-Amadea-Music-Productions-400x400.jpeg' %}" alt="">
+                            <img src="{{artist.cover}}" alt="">
                         </figure>
-                        <h3>Acceleration</h3>
+                        <h3>{{artist.name}}</h3>
                     </a>
-                    <p><a href="user.html">Amadea Music Productions</a></p>
+                    <p><a href="{% url 'artist-view' artist.name %}">{{artist.genre}}</a></p>
                 </div>
             </div>
-            <div class="card-group-grid">
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Acceleration-Amadea-Music-Productions-400x400.jpeg' %}" alt="">
-                        </figure>
-                        <h3>Acceleration</h3>
-                    </a>
-                    <p><a href="user.html">Amadea Music Productions</a></p>
-                </div>
-            </div>
-            <div class="card-group-grid">
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Acceleration-Amadea-Music-Productions-400x400.jpeg' %}" alt="">
-                        </figure>
-                        <h3>Acceleration</h3>
-                    </a>
-                    <p><a href="user.html">Amadea Music Productions</a></p>
-                </div>
-            </div>
-            <div class="card-group-grid">
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Acceleration-Amadea-Music-Productions-400x400.jpeg' %}" alt="">
-                        </figure>
-                        <h3>Acceleration</h3>
-                    </a>
-                    <p><a href="user.html">Amadea Music Productions</a></p>
-                </div>
-            </div>
-            <div class="card-group-grid">
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Acceleration-Amadea-Music-Productions-400x400.jpeg' %}" alt="">
-                        </figure>
-                        <h3>Acceleration</h3>
-                    </a>
-                    <p><a href="user.html">Amadea Music Productions</a></p>
-                </div>
-            </div>
-            <div class="card-group-grid">
-                <div class="card-simple">
-                    <a href="post.html">
-                        <figure>
-                            <img src="{% static 'images/covers/Acceleration-Amadea-Music-Productions-400x400.jpeg' %}" alt="">
-                        </figure>
-                        <h3>Acceleration</h3>
-                    </a>
-                    <p><a href="user.html">Amadea Music Productions</a></p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 
@@ -219,32 +118,18 @@
                         <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
                     </div>
                 </div>
+            </div>
+            <div class="card-group-grid">
                 <div class="card-playing-horizontal">
                     <figure class="card-playing-horizontal-header">
                         <div>
                             <span class="far fa-play" onclick=""></span>
                         </div>
-                        <a href="post.html"><img src="{% static 'images/covers/Undefeated-Amadea-Music-Productions-400x400.jpeg' %}" alt=""></a>
+                        <a href="post.html"><img src="{% static 'images/covers/The-Light-Around-Us-Dream-Sounds-400x400.jpeg' %}" alt=""></a>
                     </figure>
                     <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">Undefeated</a></h4>
-                        <p><a href="user.html">Amadea Music Productions</a></p>
-                    </div>
-                    <div class="card-playing-horizontal-footer">
-                        <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
-                        <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
-                    </div>
-                </div>
-                <div class="card-playing-horizontal">
-                    <figure class="card-playing-horizontal-header">
-                        <div>
-                            <span class="far fa-play" onclick=""></span>
-                        </div>
-                        <a href="post.html"><img src="{% static 'images/covers/Undefeated-Amadea-Music-Productions-400x400.jpeg' %}" alt=""></a>
-                    </figure>
-                    <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">Undefeated</a></h4>
-                        <p><a href="user.html">Amadea Music Productions</a></p>
+                        <h4><a href="post.html">The Light Around Us</a></h4>
+                        <p><a href="user.html">Dream Sounds</a></p>
                     </div>
                     <div class="card-playing-horizontal-footer">
                         <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
@@ -269,38 +154,6 @@
                         <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
                     </div>
                 </div>
-                <div class="card-playing-horizontal">
-                    <figure class="card-playing-horizontal-header">
-                        <div>
-                            <span class="far fa-play" onclick=""></span>
-                        </div>
-                        <a href="post.html"><img src="images/covers/The-Lake-House-DYATHON-400x400.jpeg" alt=""></a>
-                    </figure>
-                    <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">The Lake House</a></h4>
-                        <p><a href="user.html">DYATHON</a></p>
-                    </div>
-                    <div class="card-playing-horizontal-footer">
-                        <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
-                        <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
-                    </div>
-                </div>
-                <div class="card-playing-horizontal">
-                    <figure class="card-playing-horizontal-header">
-                        <div>
-                            <span class="far fa-play" onclick=""></span>
-                        </div>
-                        <a href="post.html"><img src="images/covers/Summer-LiQWYD-1-400x400.jpeg" alt=""></a>
-                    </figure>
-                    <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">Summer</a></h4>
-                        <p><a href="user.html">LiQWYD</a></p>
-                    </div>
-                    <div class="card-playing-horizontal-footer">
-                        <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
-                        <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
-                    </div>
-                </div>
             </div>
             <div class="card-group-grid">
                 <div class="card-playing-horizontal">
@@ -313,88 +166,6 @@
                     <div class="card-playing-horizontal-body">
                         <h4><a href="post.html">The Light Around Us</a></h4>
                         <p><a href="user.html">Dream Sounds</a></p>
-                    </div>
-                    <div class="card-playing-horizontal-footer">
-                        <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
-                        <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
-                    </div>
-                </div>
-                <div class="card-playing-horizontal">
-                    <figure class="card-playing-horizontal-header">
-                        <div>
-                            <span class="far fa-play" onclick=""></span>
-                        </div>
-                        <a href="post.html"><img src="images/covers/The-Lake-House-DYATHON-400x400.jpeg" alt=""></a>
-                    </figure>
-                    <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">The Lake House</a></h4>
-                        <p><a href="user.html">DYATHON</a></p>
-                    </div>
-                    <div class="card-playing-horizontal-footer">
-                        <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
-                        <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
-                    </div>
-                </div>
-                <div class="card-playing-horizontal">
-                    <figure class="card-playing-horizontal-header">
-                        <div>
-                            <span class="far fa-play" onclick=""></span>
-                        </div>
-                        <a href="post.html"><img src="images/covers/Summer-LiQWYD-1-400x400.jpeg" alt=""></a>
-                    </figure>
-                    <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">Summer</a></h4>
-                        <p><a href="user.html">LiQWYD</a></p>
-                    </div>
-                    <div class="card-playing-horizontal-footer">
-                        <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
-                        <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-group-grid">
-                <div class="card-playing-horizontal">
-                    <figure class="card-playing-horizontal-header">
-                        <div>
-                            <span class="far fa-play" onclick=""></span>
-                        </div>
-                        <a href="post.html"><img src="{% static 'images/covers/The-Light-Around-Us-Dream-Sounds-400x400.jpeg' %}" alt=""></a>
-                    </figure>
-                    <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">The Light Around Us</a></h4>
-                        <p><a href="user.html">Dream Sounds</a></p>
-                    </div>
-                    <div class="card-playing-horizontal-footer">
-                        <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
-                        <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
-                    </div>
-                </div>
-                <div class="card-playing-horizontal">
-                    <figure class="card-playing-horizontal-header">
-                        <div>
-                            <span class="far fa-play" onclick=""></span>
-                        </div>
-                        <a href="post.html"><img src="images/covers/The-Lake-House-DYATHON-400x400.jpeg" alt=""></a>
-                    </figure>
-                    <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">The Lake House</a></h4>
-                        <p><a href="user.html">DYATHON</a></p>
-                    </div>
-                    <div class="card-playing-horizontal-footer">
-                        <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
-                        <a href="javascript:download()" onclick="" title="Download" aria-label="Download"><span class="far fa-download"></span></a>
-                    </div>
-                </div>
-                <div class="card-playing-horizontal">
-                    <figure class="card-playing-horizontal-header">
-                        <div>
-                            <span class="far fa-play" onclick=""></span>
-                        </div>
-                        <a href="post.html"><img src="images/covers/Summer-LiQWYD-1-400x400.jpeg" alt=""></a>
-                    </figure>
-                    <div class="card-playing-horizontal-body">
-                        <h4><a href="post.html">Summer</a></h4>
-                        <p><a href="user.html">LiQWYD</a></p>
                     </div>
                     <div class="card-playing-horizontal-footer">
                         <a href="javascript:void(0)" onclick="" title="Like" aria-label="Like"><span class="far fa-heart"></span></a>
@@ -416,102 +187,98 @@
         <div class="card-grid-slider">
             <!-- CARD GROUP GRID -->
             <div class="card-group-grid">
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-1">
-                        <h4>Soundtrack</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-2">
-                        <h4>Epic</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
+                <div class="card-category-vertical card-category-vertical-soft-1">
+                    <h4 style="margin-bottom: 15px;">SoundTrack</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-1" onclick="playSound('1')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-1" onclick="pauseSound('1')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-1" src="/static/images/1.mp3"></audio>
+                </div>
+                <div class="card-category-vertical card-category-vertical-soft-2">
+                    <h4 style="margin-bottom: 15px;">Epic</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-2" onclick="playSound('2')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-2" onclick="pauseSound('2')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-2" src="/static/images/melodies/soundtrack.mp3"></audio>
+                </div>
             </div>
             <div class="card-group-grid">
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-3">
-                        <h4>Orchestral</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-4">
-                        <h4>Rock</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
+                <div class="card-category-vertical card-category-vertical-soft-3">
+                    <h4 style="margin-bottom: 15px;">Orchestral</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-3" onclick="playSound('2')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-3" onclick="pauseSound('2')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-3" src="/static/images/1.mp3"></audio>
+                </div>
+                <div class="card-category-vertical card-category-vertical-soft-4">
+                    <h4 style="margin-bottom: 15px;">Rock</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-4" onclick="playSound('4')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-4" onclick="pauseSound('4')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-4" src="/static/images/melodies/soundtrack.mp3"></audio>
+                </div>
             </div>
             <div class="card-group-grid">
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-5">
-                        <h4>Hip Hop</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-6">
-                        <h4>Electronic</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
+                <div class="card-category-vertical card-category-vertical-soft-5">
+                    <h4 style="margin-bottom: 15px;">Hip Hop</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-5" onclick="playSound('5')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-5" onclick="pauseSound('5')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-5" src="/static/images/1.mp3"></audio>
+                </div>
+                <div class="card-category-vertical card-category-vertical-soft-6">
+                    <h4 style="margin-bottom: 15px;">Electronic</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-6" onclick="playSound('6')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-6" onclick="pauseSound('6')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-6" src="/static/images/melodies/soundtrack.mp3"></audio>
+                </div>
             </div>
             <div class="card-group-grid">
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-7">
-                        <h4>Techno</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-8">
-                        <h4>Pop</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
+                <div class="card-category-vertical card-category-vertical-soft-7">
+                    <h4 style="margin-bottom: 15px;">Techno</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-7" onclick="playSound('7')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-7" onclick="pauseSound('7')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-7" src="/static/images/1.mp3"></audio>
+                </div>
+                <div class="card-category-vertical card-category-vertical-soft-8">
+                    <h4 style="margin-bottom: 15px;">Pop</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-8" onclick="playSound('8')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-8" onclick="pauseSound('8')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-8" src="/static/images/melodies/soundtrack.mp3"></audio>
+                </div>
             </div>
             <div class="card-group-grid">
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-9">
-                        <h4>Classical</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-10">
-                        <h4>Lo-Fi</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
+                <div class="card-category-vertical card-category-vertical-soft-9">
+                    <h4 style="margin-bottom: 15px;">Club</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-9" onclick="playSound('9')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-9" onclick="pauseSound('9')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-9" src="/static/images/1.mp3"></audio>
+                </div>
+                <div class="card-category-vertical card-category-vertical-soft-10">
+                    <h4 style="margin-bottom: 15px;">Lo-Fi</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-10" onclick="playSound('10')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-10" onclick="pauseSound('10')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-10" src="/static/images/melodies/soundtrack.mp3"></audio>
+                </div>
             </div>
             <div class="card-group-grid">
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-11">
-                        <h4>Folk</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="card-category-vertical card-category-vertical-soft-12">
-                        <h4>Ambient</h4>
-                        <span class="far fa-play"></span>
-                    </div>
-                </a>
+                <div class="card-category-vertical card-category-vertical-soft-11">
+                    <h4 style="margin-bottom: 15px;">Old School</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-11" onclick="playSound('11')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-11" onclick="pauseSound('11')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-11" src="/static/images/1.mp3"></audio>
+                </div>
+                <div class="card-category-vertical card-category-vertical-soft-12">
+                    <h4 style="margin-bottom: 15px;">Ambient</h4>
+                    <span class="far fa-play" id="playBtnPlayCard-12" onclick="playSound('12')" title="Play" aria-label="Play" style="display: inline;"></span>
+                    <span class="far fa-pause" id="pauseBtnPlayCard-12" onclick="pauseSound('12')" title="Pause" aria-label="Pause" style="display: none;"></span>
+                    <audio id="audio-12" src="/static/images/melodies/soundtrack.mp3"></audio>
+                </div>
             </div>
             <div class="card-group-grid">
-                <a href="">
                     <div class="card-category-vertical card-category-vertical-soft-13">
                         <h4>Folk</h4>
                         <span class="far fa-play"></span>
                     </div>
-                </a>
-                <a href="">
                     <div class="card-category-vertical card-category-vertical-soft-14">
                         <h4>Ambient</h4>
                         <span class="far fa-play"></span>
                     </div>
-                </a>
             </div>
         </div>
     </section>
@@ -525,38 +292,16 @@
 
         <!-- POPULAR ARTISTS SLIDER -->
         <div class="card-grid-slider">
-            <a href="user.html">
+            {% for artist in artists %}
+            <a href="{% url 'artist-view' artist.name %}">
                 <div class="card-artists-vertical">
                     <figure>
-                        <img src="{% static 'images/avatar-artists/Hans-Zimmer-400x400.jpg' %}" alt="">
+                        <img src="{{artist.cover}}" alt="">
                     </figure>
-                    <h4>Hans Zimmer</h4>
+                    <h4>{{artist.name}}</h4>
                 </div>
             </a>
-            <a href="user.html">
-                <div class="card-artists-vertical">
-                    <figure>
-                        <img src="{% static 'images/avatar-artists/Henry-Jackman-400x400.jpg' %}" alt="">
-                    </figure>
-                    <h4>Henry Jackman</h4>
-                </div>
-            </a>
-            <a href="user.html">
-                <div class="card-artists-vertical">
-                    <figure>
-                        <img src="{% static 'images/avatar-artists/Henry-Jackman-400x400.jpg' %}" alt="">
-                    </figure>
-                    <h4>Henry Jackman</h4>
-                </div>
-            </a>
-            <a href="user.html">
-                <div class="card-artists-vertical">
-                    <figure>
-                        <img src="{% static 'images/avatar-artists/Henry-Jackman-400x400.jpg' %}" alt="">
-                    </figure>
-                    <h4>Henry Jackman</h4>
-                </div>
-            </a>
+            {% endfor %}
         </div>
     </section>
 
