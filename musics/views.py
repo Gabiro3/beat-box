@@ -66,14 +66,14 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-@login_required(login_url='login')
+
 def music_view(request, pk):
     music = Music.objects.get(id=pk)
     samples = Sample.objects.filter(album=music.title)
     context = {'music': music, 'samples': samples}
     return render(request, 'music-details.html', context)
 
-@login_required(login_url='login')
+
 def artist_view(request, name):
     artist = Artist.objects.get(name=name)
     related_beats = Sample.objects.filter(creator=name)
